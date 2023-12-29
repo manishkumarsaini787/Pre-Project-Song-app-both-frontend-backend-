@@ -1,0 +1,67 @@
+
+<div class="contain" style="background-color: aqua;">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="text-container">
+                    <h1>SIGNUP</h1>
+                    <h6>Register yourself!!</h6>
+                 </div>
+                    <form [formGroup]="userForm">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">First Name</label>
+
+                            <input type="firstName" class="form-control" id="firstName"formControlName="firstName">
+                            <p *ngIf="firstName?.errors?.['required']">firstName is required</p>
+
+                            <p *ngIf="firstName?.errors?.['maxlength']">
+                              title should be of maximun 8 word
+                            </p>
+
+                          </div>
+                          <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Last Name</label>
+                            <input type="lastName" class="form-control" id="lastName" formControlName="lastName">
+                            <p *ngIf="lastName?.errors?.['required']">lastName is required</p>
+
+                            <p *ngIf="lastName?.errors?.['maxlength']">
+                              lastName should be of maximun 8 word
+                            </p>
+                          </div>
+
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Email address</label>
+                          <input type="email" class="form-control" id="email" aria-describedby="emailHelp"formControlName="email">
+                          <p *ngIf="email?.errors?.['required']">email is required</p>
+
+                            <p *ngIf="email?.errors?.['maxlength']">
+                              email should be of maximun 20 word
+                            </p>
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Password</label>
+                          <input type="password" class="form-control" id="password"formControlName="password">
+                          <p *ngIf="password?.errors?.['required']">password is required</p>
+
+                          <p *ngIf="password?.errors?.['maxlength']">
+                            password should be of maximun 6 word
+                          </p>
+                        </div>
+
+
+
+                        <button (click)="registerCheck()" class="btn btn-primary">Register</button>
+                      </form>
+
+                      <a routerLink="/login">Already registered. Click to Login!!</a>
+                      
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</div>

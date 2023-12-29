@@ -1,0 +1,29 @@
+<div class="container" *ngIf="!viewComponent">
+  <div class="row cards-wrapper">
+    <div class="col-sm-6 col-md-4 col-lg-3 song-card" *ngFor="let playlist of playlists">
+      <div class="card">
+        <h3>Playlist Name: {{ playlist.name }}</h3>
+        <div class="card-body">
+          <div class="card-info">
+            <div>
+              <button type="submit" class="btn btn-primary" (click)="viewSongs(playlist.name); componentToggle()">
+                View Songs
+              </button>
+              
+
+              <br/>
+
+
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="viewComponent">
+  <button (click)="componentToggle()" >Back</button>
+  <app-view-songinplaylist [songs]="songs"></app-view-songinplaylist>
+</div>
+
+<router-outlet></router-outlet>

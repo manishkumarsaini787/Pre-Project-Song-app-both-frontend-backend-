@@ -1,0 +1,69 @@
+<div>
+  <h3 *ngIf="loginStatus">Welcome {{ email }}</h3>
+</div>
+<button class="btn" *ngIf="loginStatus">
+  <a routerLink="/playlist">View playlist</a>
+</button>
+<button class="btn" *ngIf="loginStatus" (click)="showCreateplayList=!showCreateplayList">
+  Create playlist
+</button>
+     <button class="btn">
+      <a routerLink="/admin"> admin</a>
+     </button>
+<div id="createPlaylist" *ngIf="showCreateplayList">
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <form [formGroup]="playlist">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Playlist Name</label>
+          <input type="text" class="form-control" formControlName="playlist" />
+        </div>
+        <button (click)="createplaylist()" class="btn btn-primary">
+          Create
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<button class="btn" *ngIf="loginStatus" (click)="logout()">Logout</button>
+
+<div class="container">
+  <div class="row cards-wrapper">
+    <div class="col-sm-6 col-md-4 col-lg-3 song-card" *ngFor="let song of songs">
+      <div class="card">
+        <h3>{{ song.name }}</h3>
+
+        <img src="{{ song.image }}" alt="{{ song.name }}" class="card-img-top" />
+        <div class="card-body">
+          <!-- <div class="card-info"> -->
+            <h4>song Informations:-</h4>
+            <h6>song Artist:{{ song.artistName }}</h6>
+            <h6>song duration:{{ song.duration }} min</h6>
+            <div>
+              <button type="submit" class="btn btn-primary" [disabled]="!loginStatus" (click)="play()">
+                Play
+              </button>
+              <br />
+              <br />
+              <div *ngIf="loginStatus">
+                <select class="form-select form-select-lg mb-3"[(ngModel)]="selectedOptionValue">
+                  <option selected >Playlist Name</option>
+                  <option *ngFor="let option of playlists" [value]="option.name">
+                    {{ option.name }}
+                  </option>
+                </select>
+                <button (click)="addSong(song)" class="btn btn-primary">
+                  add Song in playlist
+                </button>
+              </div>
+            <!-- </div> -->
+
+            <p *ngIf="!loginStatus">
+              PLEASE LOGIN TO PLAY SONG....
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
